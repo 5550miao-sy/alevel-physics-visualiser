@@ -80,7 +80,7 @@
       </div>
       <div class="misconception"><strong>COMMON MISCONCEPTION · 常见误区</strong><p>电子漂移很慢，但灯泡几乎立即亮起。原因不是某个电子瞬间从开关跑到灯泡，而是电路中的电场迅速建立，使整条导线内的电子几乎同时开始漂移。</p></div>
 
-      <section class="quiz"><h2>Check your understanding</h2><p>在其他条件保持不变时，若导线截面积增大为原来的 2 倍，电流会怎样变化？</p><div class="answers"><button class="answer" data-correct="true">A · 增大为原来的 2 倍</button><button class="answer">B · 减小为原来的 1/2</button><button class="answer">C · 保持不变</button><button class="answer">D · 增大为原来的 4 倍</button></div><div class="feedback" id="feedback" aria-live="polite"></div></section>
+      <section class="quiz"><h2>Check your understanding</h2><p>The cross-sectional area of a wire is doubled. The number density of charge carriers and their mean drift velocity remain constant. What happens to the current in the wire?</p><div class="answers"><button class="answer" data-correct="true">A · It doubles.</button><button class="answer">B · It halves.</button><button class="answer">C · It remains the same.</button><button class="answer">D · It increases by a factor of four.</button></div><div class="feedback" id="feedback" aria-live="polite"></div></section>
       <div class="next"><div><small>NEXT LESSON</small><strong>Electrical energy transfer</strong></div><span>即将加入 →</span></div>
     </div>
   </main>
@@ -94,7 +94,7 @@
   function update(){const n=+els.n.value,a=+els.a.value,v=+els.v.value,t=+els.t.value,I=n*1e28*a*1e-6*v*1e-3*1.6e-19,Q=I*t;els.nv.textContent=fixed(n,1)+' × 10²⁸ m⁻³';els.av.textContent=fixed(a,1)+' mm²';els.vv.textContent=fixed(v,2)+' mm s⁻¹';els.tv.textContent=fixed(t,1)+' s';els.current.textContent=fixed(I,2)+' A';els.charge.textContent=fixed(Q,2)+' C passes in '+fixed(t,1)+' s';els.equation.textContent='= '+fixed(Q,2)+' C / '+fixed(t,1)+' s = '+fixed(I,2)+' A';populate()}
   function frame(now){const dt=Math.min(40,now-last)/16.67;last=now;if(running){const speed=+els.v.value*3.8;particles.forEach(p=>{p.x-=speed*dt;if(p.x<25)p.x=835;p.phase+=.12*dt;p.el.setAttribute('cx',p.x);p.el.setAttribute('cy',p.y+Math.sin(p.phase)*2.3)})}requestAnimationFrame(frame)}
   [els.n,els.a,els.v,els.t].forEach(x=>x.addEventListener('input',update));els.toggle.addEventListener('click',()=>{running=!running;els.toggle.textContent=running?'暂停动画':'继续动画'});
-  document.querySelectorAll('.answer').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.answer').forEach(x=>x.classList.remove('correct','wrong'));const ok=btn.dataset.correct==='true';btn.classList.add(ok?'correct':'wrong');$('#feedback').textContent=ok?'正确！根据 I = nAvq，A 加倍时 I 也加倍。':'再想一想 I = nAvq：只改变 A 时，I 与 A 成正比。';$('#feedback').style.color=ok?'var(--green)':'var(--red)'}));
+  document.querySelectorAll('.answer').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.answer').forEach(x=>x.classList.remove('correct','wrong'));const ok=btn.dataset.correct==='true';btn.classList.add(ok?'correct':'wrong');$('#feedback').textContent=ok?'Correct. From I = nAvq, current is directly proportional to cross-sectional area when n, v and q remain constant.':'Not quite. Use I = nAvq. Since n, v and q remain constant, current is directly proportional to cross-sectional area A.';$('#feedback').style.color=ok?'var(--green)':'var(--red)'}));
   const app=$('#app');$('#menu').addEventListener('click',()=>app.classList.add('nav-open'));$('#overlay').addEventListener('click',()=>app.classList.remove('nav-open'));
   update();requestAnimationFrame(frame);
 })();
